@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                  id="Definitions_IS_FIM_Ingresso"
+                  targetNamespace="http://bpmn.io/schema/bpmn">
+
+  <bpmn:process id="Process_IS_FIM_Ingresso" name="CONFECÇÃO DE MENSAGENS COM RESULTADOS DE IS FIM INGRESSO" isExecutable="false">
+
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Secretario" name="SECRETÁRIO">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ReceberMensagem</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SolicitarCSV</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ImportarSINAIS</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ConferirPrazos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DefinirDatas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ElaborarMinutaAgendamento</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EmitirCientificacao</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_FaltouInsuf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EmitirRecurso</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GerarMinutaResultados</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EncaminharSupervisor</bpmn:flowNodeRef>
+      </bpmn:lane>
+
+      <bpmn:lane id="Lane_Supervisor" name="SUPERVISOR">
+        <bpmn:flowNodeRef>Task_AprovarDatas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CriarPlanilha</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InserirCandidatos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ConferirListasSinais</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ConferirMinuta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_BloquearLinhas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EncaminharPresidente</bpmn:flowNodeRef>
+      </bpmn:lane>
+
+      <bpmn:lane id="Lane_AMP" name="AMP">
+        <bpmn:flowNodeRef>Task_RealizarIS</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AtualizarConclusao</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InserirTIS</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InserirDS1A</bpmn:flowNodeRef>
+      </bpmn:lane>
+
+      <bpmn:lane id="Lane_Presidente" name="PRESIDENTE">
+        <bpmn:flowNodeRef>Task_VerificarIntegridade</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_BuscasAvancadas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ExportarCSV</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AuditoriaDigital</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_Divergencias</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CorrigirDivergencias</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_TramitarViceDiretor</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Fim</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+
+    <bpmn:startEvent id="StartEvent_Inicio" name="Início">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+
+    <bpmn:task id="Task_ReceberMensagem" name="Receber mensagem de apresentação dos candidatos">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_SolicitarCSV" name="Solicitar planilha CSV com dados dos candidatos">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_ImportarSINAIS" name="Importar candidatos no SINAIS">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_ConferirPrazos" name="Conferir prazos para realização das IS">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_DefinirDatas" name="Definir datas das IS e distribuir candidatos por turno">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_ElaborarMinutaAgendamento" name="Elaborar minuta da resposta com datas e agendamentos">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_AprovarDatas" name="Aprovar datas dedicadas às IS e agendamentos">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_CriarPlanilha" name="Criar planilha do concurso no Drive Compartilhado">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_InserirCandidatos" name="Inserir candidatos na planilha conforme datas aprovadas">
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_RealizarIS" name="Realizar IS de cada candidato conforme data agendada">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_AtualizarConclusao" name="Atualizar conclusão e observações na planilha">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_InserirTIS" name="Inserir número TIS gerado pelo SINAIS">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_13</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_InserirDS1A" name="Inserir Código DS-1A gerado pelo SINAIS">
+      <bpmn:incoming>Flow_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_14</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_EmitirCientificacao" name="Emitir Termo de Cientificação, inserir no SINAIS e entregar via ao candidato">
+      <bpmn:incoming>Flow_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:exclusiveGateway id="Gateway_FaltouInsuf" name="Conclusão da IS é FALTOU ou INSUFICIÊNCIA DOCUMENTAL?">
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_16_Sim</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17_Nao</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:task id="Task_EmitirRecurso" name="Emitir Termo de Reconhecimento de Recurso e marcar Recurso na planilha">
+      <bpmn:incoming>Flow_16_Sim</bpmn:incoming>
+      <bpmn:outgoing>Flow_18</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_ConferirListasSinais" name="Conferir aba Listas por Conclusões com o SINAIS">
+      <bpmn:incoming>Flow_17_Nao</bpmn:incoming>
+      <bpmn:incoming>Flow_18</bpmn:incoming>
+      <bpmn:outgoing>Flow_19</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_GerarMinutaResultados" name="Gerar automaticamente a minuta da mensagem com os resultados">
+      <bpmn:incoming>Flow_19</bpmn:incoming>
+      <bpmn:outgoing>Flow_20</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_EncaminharSupervisor" name="Encaminhar minuta ao Supervisor para conferência">
+      <bpmn:incoming>Flow_20</bpmn:incoming>
+      <bpmn:outgoing>Flow_21</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_ConferirMinuta" name="Conferir minuta com a aba Listas por Conclusões">
+      <bpmn:incoming>Flow_21</bpmn:incoming>
+      <bpmn:outgoing>Flow_22</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_BloquearLinhas" name="Bloquear linhas conferidas na aba Listas por Conclusões">
+      <bpmn:incoming>Flow_22</bpmn:incoming>
+      <bpmn:outgoing>Flow_23</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_EncaminharPresidente" name="Encaminhar minuta e planilha ao Presidente para verificação final">
+      <bpmn:incoming>Flow_23</bpmn:incoming>
+      <bpmn:outgoing>Flow_24</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_VerificarIntegridade" name="Verificar integridade das fórmulas e validações da planilha">
+      <bpmn:incoming>Flow_24</bpmn:incoming>
+      <bpmn:incoming>Flow_30</bpmn:incoming>
+      <bpmn:outgoing>Flow_25</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_BuscasAvancadas" name="Realizar buscas avançadas no SINAIS">
+      <bpmn:incoming>Flow_25</bpmn:incoming>
+      <bpmn:outgoing>Flow_26</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_ExportarCSV" name="Exportar arquivos CSV do SINAIS">
+      <bpmn:incoming>Flow_26</bpmn:incoming>
+      <bpmn:outgoing>Flow_27</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_AuditoriaDigital" name="Realizar auditoria digital comparando CSV, planilha e minuta">
+      <bpmn:incoming>Flow_27</bpmn:incoming>
+      <bpmn:outgoing>Flow_28</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:exclusiveGateway id="Gateway_Divergencias" name="Há divergências?">
+      <bpmn:incoming>Flow_28</bpmn:incoming>
+      <bpmn:outgoing>Flow_29_Sim</bpmn:outgoing>
+      <bpmn:outgoing>Flow_31_Nao</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:task id="Task_CorrigirDivergencias" name="Corrigir divergências com base nos dados do SINAIS e revisar o processo">
+      <bpmn:incoming>Flow_29_Sim</bpmn:incoming>
+      <bpmn:outgoing>Flow_30</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_TramitarViceDiretor" name="Tramitar a minuta da mensagem com os resultados das IS para o Vice-Diretor">
+      <bpmn:incoming>Flow_31_Nao</bpmn:incoming>
+      <bpmn:outgoing>Flow_32</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:endEvent id="EndEvent_Fim" name="Fim">
+      <bpmn:incoming>Flow_32</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_ReceberMensagem"/>
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_ReceberMensagem" targetRef="Task_SolicitarCSV"/>
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_SolicitarCSV" targetRef="Task_ImportarSINAIS"/>
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_ImportarSINAIS" targetRef="Task_ConferirPrazos"/>
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_ConferirPrazos" targetRef="Task_DefinirDatas"/>
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_DefinirDatas" targetRef="Task_ElaborarMinutaAgendamento"/>
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_ElaborarMinutaAgendamento" targetRef="Task_AprovarDatas"/>
+    <bpmn:sequenceFlow id="Flow_08" sourceRef="Task_AprovarDatas" targetRef="Task_CriarPlanilha"/>
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_CriarPlanilha" targetRef="Task_InserirCandidatos"/>
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_InserirCandidatos" targetRef="Task_RealizarIS"/>
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_RealizarIS" targetRef="Task_AtualizarConclusao"/>
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_AtualizarConclusao" targetRef="Task_InserirTIS"/>
+    <bpmn:sequenceFlow id="Flow_13" sourceRef="Task_InserirTIS" targetRef="Task_InserirDS1A"/>
+    <bpmn:sequenceFlow id="Flow_14" sourceRef="Task_InserirDS1A" targetRef="Task_EmitirCientificacao"/>
+    <bpmn:sequenceFlow id="Flow_15" sourceRef="Task_EmitirCientificacao" targetRef="Gateway_FaltouInsuf"/>
+    <bpmn:sequenceFlow id="Flow_16_Sim" name="Sim" sourceRef="Gateway_FaltouInsuf" targetRef="Task_EmitirRecurso"/>
+    <bpmn:sequenceFlow id="Flow_17_Nao" name="Não" sourceRef="Gateway_FaltouInsuf" targetRef="Task_ConferirListasSinais"/>
+    <bpmn:sequenceFlow id="Flow_18" sourceRef="Task_EmitirRecurso" targetRef="Task_ConferirListasSinais"/>
+    <bpmn:sequenceFlow id="Flow_19" sourceRef="Task_ConferirListasSinais" targetRef="Task_GerarMinutaResultados"/>
+    <bpmn:sequenceFlow id="Flow_20" sourceRef="Task_GerarMinutaResultados" targetRef="Task_EncaminharSupervisor"/>
+    <bpmn:sequenceFlow id="Flow_21" sourceRef="Task_EncaminharSupervisor" targetRef="Task_ConferirMinuta"/>
+    <bpmn:sequenceFlow id="Flow_22" sourceRef="Task_ConferirMinuta" targetRef="Task_BloquearLinhas"/>
+    <bpmn:sequenceFlow id="Flow_23" sourceRef="Task_BloquearLinhas" targetRef="Task_EncaminharPresidente"/>
+    <bpmn:sequenceFlow id="Flow_24" sourceRef="Task_EncaminharPresidente" targetRef="Task_VerificarIntegridade"/>
+    <bpmn:sequenceFlow id="Flow_25" sourceRef="Task_VerificarIntegridade" targetRef="Task_BuscasAvancadas"/>
+    <bpmn:sequenceFlow id="Flow_26" sourceRef="Task_BuscasAvancadas" targetRef="Task_ExportarCSV"/>
+    <bpmn:sequenceFlow id="Flow_27" sourceRef="Task_ExportarCSV" targetRef="Task_AuditoriaDigital"/>
+    <bpmn:sequenceFlow id="Flow_28" sourceRef="Task_AuditoriaDigital" targetRef="Gateway_Divergencias"/>
+    <bpmn:sequenceFlow id="Flow_29_Sim" name="Sim" sourceRef="Gateway_Divergencias" targetRef="Task_CorrigirDivergencias"/>
+    <bpmn:sequenceFlow id="Flow_30" sourceRef="Task_CorrigirDivergencias" targetRef="Task_VerificarIntegridade"/>
+    <bpmn:sequenceFlow id="Flow_31_Nao" name="Não" sourceRef="Gateway_Divergencias" targetRef="Task_TramitarViceDiretor"/>
+    <bpmn:sequenceFlow id="Flow_32" sourceRef="Task_TramitarViceDiretor" targetRef="EndEvent_Fim"/>
+
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_IS_FIM_Ingresso">
+    <bpmndi:BPMNPlane id="BPMNPlane_IS_FIM_Ingresso" bpmnElement="Process_IS_FIM_Ingresso">
+
+      <bpmndi:BPMNShape id="Lane_Secretario_di" bpmnElement="Lane_Secretario" isHorizontal="true">
+        <dc:Bounds x="80" y="80" width="2060" height="170"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Supervisor_di" bpmnElement="Lane_Supervisor" isHorizontal="true">
+        <dc:Bounds x="80" y="250" width="2060" height="170"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_AMP_di" bpmnElement="Lane_AMP" isHorizontal="true">
+        <dc:Bounds x="80" y="420" width="2060" height="150"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Presidente_di" bpmnElement="Lane_Presidente" isHorizontal="true">
+        <dc:Bounds x="80" y="570" width="2060" height="190"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio"><dc:Bounds x="120" y="145" width="36" height="36"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ReceberMensagem_di" bpmnElement="Task_ReceberMensagem"><dc:Bounds x="190" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SolicitarCSV_di" bpmnElement="Task_SolicitarCSV"><dc:Bounds x="340" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ImportarSINAIS_di" bpmnElement="Task_ImportarSINAIS"><dc:Bounds x="490" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConferirPrazos_di" bpmnElement="Task_ConferirPrazos"><dc:Bounds x="640" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DefinirDatas_di" bpmnElement="Task_DefinirDatas"><dc:Bounds x="790" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ElaborarMinutaAgendamento_di" bpmnElement="Task_ElaborarMinutaAgendamento"><dc:Bounds x="940" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_FaltouInsuf_di" bpmnElement="Gateway_FaltouInsuf" isMarkerVisible="true"><dc:Bounds x="1100" y="135" width="60" height="60"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EmitirRecurso_di" bpmnElement="Task_EmitirRecurso"><dc:Bounds x="1210" y="120" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EmitirCientificacao_di" bpmnElement="Task_EmitirCientificacao"><dc:Bounds x="1390" y="120" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_GerarMinutaResultados_di" bpmnElement="Task_GerarMinutaResultados"><dc:Bounds x="1600" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EncaminharSupervisor_di" bpmnElement="Task_EncaminharSupervisor"><dc:Bounds x="1770" y="120" width="120" height="80"/></bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_AprovarDatas_di" bpmnElement="Task_AprovarDatas"><dc:Bounds x="190" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CriarPlanilha_di" bpmnElement="Task_CriarPlanilha"><dc:Bounds x="360" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_InserirCandidatos_di" bpmnElement="Task_InserirCandidatos"><dc:Bounds x="530" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConferirListasSinais_di" bpmnElement="Task_ConferirListasSinais"><dc:Bounds x="960" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConferirMinuta_di" bpmnElement="Task_ConferirMinuta"><dc:Bounds x="1130" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_BloquearLinhas_di" bpmnElement="Task_BloquearLinhas"><dc:Bounds x="1300" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EncaminharPresidente_di" bpmnElement="Task_EncaminharPresidente"><dc:Bounds x="1470" y="295" width="130" height="80"/></bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_RealizarIS_di" bpmnElement="Task_RealizarIS"><dc:Bounds x="190" y="455" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AtualizarConclusao_di" bpmnElement="Task_AtualizarConclusao"><dc:Bounds x="360" y="455" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_InserirTIS_di" bpmnElement="Task_InserirTIS"><dc:Bounds x="530" y="455" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_InserirDS1A_di" bpmnElement="Task_InserirDS1A"><dc:Bounds x="700" y="455" width="130" height="80"/></bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_VerificarIntegridade_di" bpmnElement="Task_VerificarIntegridade"><dc:Bounds x="850" y="635" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_BuscasAvancadas_di" bpmnElement="Task_BuscasAvancadas"><dc:Bounds x="1010" y="635" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ExportarCSV_di" bpmnElement="Task_ExportarCSV"><dc:Bounds x="1170" y="635" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AuditoriaDigital_di" bpmnElement="Task_AuditoriaDigital"><dc:Bounds x="1330" y="635" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_Divergencias_di" bpmnElement="Gateway_Divergencias" isMarkerVisible="true"><dc:Bounds x="1500" y="650" width="60" height="60"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CorrigirDivergencias_di" bpmnElement="Task_CorrigirDivergencias"><dc:Bounds x="1630" y="600" width="150" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_TramitarViceDiretor_di" bpmnElement="Task_TramitarViceDiretor"><dc:Bounds x="1630" y="705" width="150" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Fim_di" bpmnElement="EndEvent_Fim"><dc:Bounds x="1840" y="725" width="36" height="36"/></bpmndi:BPMNShape>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</bpmn:definitions>
