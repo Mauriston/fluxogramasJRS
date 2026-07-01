@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_Fluxograma_IS_MPI_HNRe" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.16.0">
+  <bpmn:collaboration id="Collaboration_MPI_HNRe">
+    <bpmn:participant id="Participant_MPI_HNRe" name="FLUXOGRAMA DE INSPEÇÕES DE SAÚDE  DO MPI/HNRe" processRef="Process_MPI_HNRe" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_MPI_HNRe" name="Fluxograma de IS do MPI/HNRe" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_MPI_HNRe">
+      <bpmn:lane id="Lane_PresJRS" name="Presidente JUR">
+        <bpmn:flowNodeRef>Task_ConferenciaAutorizacao</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_TransmissaoMSG</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_DeclinioCompetencia</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_MedicoPeritoIsolado" name="Médico Perito Isolado">
+        <bpmn:flowNodeRef>Task_EntrevistaExameClinico</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_CompetenteParaConcluir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ConclusaoAssinatura</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ExamesComplementares" name="Serviços de Apoio">
+        <bpmn:flowNodeRef>Task_RealizacaoExamesComplementares</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Secretaria" name="Secretaria">
+        <bpmn:flowNodeRef>Event_0e88vyi</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AberturaIS</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EntregaSolicitacaoExames</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_LancamentoResultados</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ConvocacaoInspecionado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_MinutaMSGConclusao</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Event_0e88vyi" name="SOLICITAÇÃO DE IS">
+      <bpmn:outgoing>Flow_0j50pae</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1de0ezj" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_AberturaIS" name="Abertura da IS no SINAIS">
+      <bpmn:incoming>Flow_0j50pae</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:task id="Task_EntregaSolicitacaoExames" name="Entrega da solicitação de exames para o inspecionado">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RealizacaoExamesComplementares" name="Realização dos exames complementares">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ConferenciaAutorizacao" name="Conferência dos dados e autorização para transmissão">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_TransmissaoMSG" name="TRAMITAÇÃO DA MINUTA PARA HNRe-02">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0a9jk5x" />
+    </bpmn:endEvent>
+    <bpmn:task id="Task_LancamentoResultados" name="Lançamento dos resultados de exames no SINAIS">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sendTask id="Task_ConvocacaoInspecionado" name="Convocação do inspecionado">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="Task_EntrevistaExameClinico" name="Entrevista e exame clínico">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_CompetenteParaConcluir" name="Necessodade de LTS ou alterar restrições?">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08_Sim</bpmn:outgoing>
+      <bpmn:outgoing>Flow_09_Nao</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="EndEvent_DeclinioCompetencia" name="DECLÍNIO DE COMPETÊNCIA PARA JRS/HNRe">
+      <bpmn:incoming>Flow_09_Nao</bpmn:incoming>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_04k29y8" />
+    </bpmn:endEvent>
+    <bpmn:task id="Task_ConclusaoAssinatura" name="Conclusão da IS e assinatura eletrônica">
+      <bpmn:incoming>Flow_08_Sim</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_MinutaMSGConclusao" name="Confecção de minuta da MSG de conclusão">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0j50pae" sourceRef="Event_0e88vyi" targetRef="Task_AberturaIS" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_AberturaIS" targetRef="Task_EntregaSolicitacaoExames" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_EntregaSolicitacaoExames" targetRef="Task_RealizacaoExamesComplementares" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_RealizacaoExamesComplementares" targetRef="Task_LancamentoResultados" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_MinutaMSGConclusao" targetRef="Task_ConferenciaAutorizacao" />
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_ConferenciaAutorizacao" targetRef="EndEvent_TransmissaoMSG" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_LancamentoResultados" targetRef="Task_ConvocacaoInspecionado" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_ConvocacaoInspecionado" targetRef="Task_EntrevistaExameClinico" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_EntrevistaExameClinico" targetRef="Gateway_CompetenteParaConcluir" />
+    <bpmn:sequenceFlow id="Flow_08_Sim" name="Sim" sourceRef="Gateway_CompetenteParaConcluir" targetRef="Task_ConclusaoAssinatura" />
+    <bpmn:sequenceFlow id="Flow_09_Nao" name="Não" sourceRef="Gateway_CompetenteParaConcluir" targetRef="EndEvent_DeclinioCompetencia" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_ConclusaoAssinatura" targetRef="Task_MinutaMSGConclusao" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_MPI_HNRe" name="Fluxograma IS MPI HNRe 16:9">
+    <bpmndi:BPMNPlane id="BPMNPlane_MPI_HNRe" bpmnElement="Collaboration_MPI_HNRe">
+      <bpmndi:BPMNShape id="Participant_MPI_HNRe_di" bpmnElement="Participant_MPI_HNRe" isHorizontal="true">
+        <dc:Bounds x="160" y="90" width="1490" height="730" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_PresJRS_di" bpmnElement="Lane_PresJRS" isHorizontal="true">
+        <dc:Bounds x="190" y="630" width="1460" height="190" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_MedicoPeritoIsolado_di" bpmnElement="Lane_MedicoPeritoIsolado" isHorizontal="true">
+        <dc:Bounds x="190" y="450" width="1460" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ExamesComplementares_di" bpmnElement="Lane_ExamesComplementares" isHorizontal="true">
+        <dc:Bounds x="190" y="270" width="1460" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Secretaria_di" bpmnElement="Lane_Secretaria" isHorizontal="true">
+        <dc:Bounds x="190" y="90" width="1460" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0e88vyi_di" bpmnElement="Event_0e88vyi" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="252" y="160" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="233" y="203" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ffeckh_di" bpmnElement="Task_AberturaIS">
+        <dc:Bounds x="350" y="138" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EntregaSolicitacaoExames_di" bpmnElement="Task_EntregaSolicitacaoExames">
+        <dc:Bounds x="505" y="138" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RealizacaoExamesComplementares_di" bpmnElement="Task_RealizacaoExamesComplementares">
+        <dc:Bounds x="505" y="320" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConferenciaAutorizacao_di" bpmnElement="Task_ConferenciaAutorizacao">
+        <dc:Bounds x="1320" y="680" width="160" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rrkvir_di" bpmnElement="EndEvent_TransmissaoMSG" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <dc:Bounds x="1562" y="702" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1517" y="756" width="125" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_115ch1p_di" bpmnElement="Task_LancamentoResultados">
+        <dc:Bounds x="710" y="138" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1teiq9a_di" bpmnElement="Task_ConvocacaoInspecionado">
+        <dc:Bounds x="895" y="138" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ovmhs8_di" bpmnElement="Task_EntrevistaExameClinico" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="895" y="500" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_CompetenteParaConcluir_di" bpmnElement="Gateway_CompetenteParaConcluir" isMarkerVisible="true" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="1045" y="515" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1018" y="470" width="105" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ywn3nr_di" bpmnElement="EndEvent_DeclinioCompetencia" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <dc:Bounds x="1052" y="712" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1014" y="768" width="113" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConclusaoAssinatura_di" bpmnElement="Task_ConclusaoAssinatura">
+        <dc:Bounds x="1155" y="500" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_MinutaMSGConclusao_di" bpmnElement="Task_MinutaMSGConclusao">
+        <dc:Bounds x="1160" y="138" width="140" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="450" y="178" />
+        <di:waypoint x="505" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="580" y="218" />
+        <di:waypoint x="580" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="655" y="360" />
+        <di:waypoint x="760" y="360" />
+        <di:waypoint x="760" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="810" y="178" />
+        <di:waypoint x="895" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="945" y="218" />
+        <di:waypoint x="945" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="995" y="540" />
+        <di:waypoint x="1045" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_Sim_di" bpmnElement="Flow_08_Sim">
+        <di:waypoint x="1095" y="540" />
+        <di:waypoint x="1155" y="540" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1112" y="523" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_Nao_di" bpmnElement="Flow_09_Nao">
+        <di:waypoint x="1070" y="565" />
+        <di:waypoint x="1070" y="712" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1079" y="587" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1230" y="500" />
+        <di:waypoint x="1230" y="218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="1300" y="178" />
+        <di:waypoint x="1400" y="178" />
+        <di:waypoint x="1400" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="1480" y="720" />
+        <di:waypoint x="1562" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j50pae_di" bpmnElement="Flow_0j50pae">
+        <di:waypoint x="288" y="178" />
+        <di:waypoint x="350" y="178" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
