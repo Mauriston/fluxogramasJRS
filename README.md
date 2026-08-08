@@ -78,15 +78,15 @@ A JRS/HNRe é organizada administrativamente pelos Agentes Médicos Periciais (A
 
 # **4\. OBJETIVOS**
 
-    4.1 Verificar o estado de sanidade psicofísica do pessoal em serviço ativo, inativos, veteranos e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da Marinha do Brasil e, excepcionalmente, a avaliação da capacidade laboral no Serviço de Praticagem nos estados de Pernambuco, Paraíba e Alagoas;
+   4.1 Verificar o estado de sanidade psicofísica do pessoal em serviço ativo, inativos, veteranos e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da Marinha do Brasil e, excepcionalmente, a avaliação da capacidade laboral no Serviço de Praticagem nos estados de Pernambuco, Paraíba e Alagoas;
 
-4.2 Fazer a devida interlocução deste Hospital dentro da Cadeia Hierárquica do SMP tendo como instância superior JSD/Com3ºDN e instâncias inferiores o MPI/CPAL e MPI/CPPB;
+   4.2 Fazer a devida interlocução deste Hospital dentro da Cadeia Hierárquica do SMP tendo como instância superior JSD/Com3ºDN e instâncias inferiores o MPI/CPAL e MPI/CPPB;
 
-4.3 Assessorar a Direção e Vice-Direção em demandas Médico-Periciais; 
+   4.3 Assessorar a Direção e Vice-Direção em demandas Médico-Periciais; 
 
-4.4 Fornecer subsídios à Assessoria Jurídica (HNRe-01.2) em processos quando demandados temas Médico-Periciais; e
+   4.4 Fornecer subsídios à Assessoria Jurídica (HNRe-01.2) em processos quando demandados temas Médico-Periciais; e
 
-4.5 Fornecer subsídios Médico-Periciais ao Núcleo de Avaliação e Controle (HNRe-02.6) e à Divisão de Pessoal (HNRe-21) para o adequado Controle Médico-Pericial e Assistencial (CMPA) dos Militares da Ativa deste Hospital que apresentem deficiências funcionais (Restrições/LTS) em conformidade com o disposto na referência C.
+   4.5 Fornecer subsídios Médico-Periciais ao Núcleo de Avaliação e Controle (HNRe-02.6) e à Divisão de Pessoal (HNRe-21) para o adequado Controle Médico-Pericial e Assistencial (CMPA) dos Militares da Ativa deste Hospital que apresentem deficiências funcionais (Restrições/LTS) em conformidade com o disposto na referência C.
 
     
 
