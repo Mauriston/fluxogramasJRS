@@ -78,7 +78,7 @@ A JRS/HNRe é organizada administrativamente pelos Agentes Médicos Periciais (A
 
 # **4\. OBJETIVOS**
 
-4.1 Verificar o estado de sanidade psicofísica do pessoal em serviço ativo, inativos, veteranos e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da Marinha do Brasil e, excepcionalmente, a avaliação da capacidade laboral no Serviço de Praticagem nos estados de Pernambuco, Paraíba e Alagoas;
+    4.1 Verificar o estado de sanidade psicofísica do pessoal em serviço ativo, inativos, veteranos e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da Marinha do Brasil e, excepcionalmente, a avaliação da capacidade laboral no Serviço de Praticagem nos estados de Pernambuco, Paraíba e Alagoas;
 
 4.2 Fazer a devida interlocução deste Hospital dentro da Cadeia Hierárquica do SMP tendo como instância superior JSD/Com3ºDN e instâncias inferiores o MPI/CPAL e MPI/CPPB;
 
