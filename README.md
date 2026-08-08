@@ -1,11 +1,7 @@
 # **MARINHA DO BRASIL**
-
 # **HOSPITAL NAVAL DE RECIFE**
 
-02.2/080.1  
-Recife, PE, na data da assinatura.
-
-## **ORDEM INTERNA Nº 02-05D**
+**ORDEM INTERNA Nº 02-05D**
 
 Assunto:	Normas para o funcionamento da Junta Regular de Saúde  
 			  
