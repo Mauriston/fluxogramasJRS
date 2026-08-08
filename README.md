@@ -32,7 +32,7 @@ Estabelecer normas para o funcionamento da Junta Regular de Saúde deste Hospita
 
 O Subsistema Médico-Pericial (SMP), integrante do Sistema de Saúde da Marinha (SSM), é o responsável pelas avaliações médico-periciais do pessoal em serviço ativo, veterano e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da MB. Este documento apresenta, como finalidade, estabelecer normas para o funcionamento do SMP no âmbito do Hospital Naval de Recife através da Junta Regular de Saúde (JRS/HNRe) e definir a estrutura administrativa desta. 
 
-**3\. ESTRUTURA ORGANIZACIONAL**  
+# **3\. ESTRUTURA ORGANIZACIONAL**  
 
 A Junta Regular de Saúde (HNRe-02.2) é subordinada administrativamente ao Vice-Diretor (HNRe-02) conforme a referência A e tecnicamente à Junta Superior Distrital do Comando do 3ºDN (JSD/COM3ºDN) enquanto elemento do SMP de acordo com o previsto na referência B.
 
