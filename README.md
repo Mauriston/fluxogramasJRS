@@ -76,7 +76,7 @@ A JRS/HNRe é organizada administrativamente pelos Agentes Médicos Periciais (A
 
    2) Os AMP podem solicitar exames subsidiários e pareceres especializados às clínicas da MB ou extra-MB, quando julgarem pertinentes, para esclarecimento diagnóstico.
 
-      # **4\. OBJETIVOS**
+# **4\. OBJETIVOS**
 
       4.1 Verificar o estado de sanidade psicofísica do pessoal em serviço ativo, inativos, veteranos e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da Marinha do Brasil e, excepcionalmente, a avaliação da capacidade laboral no Serviço de Praticagem nos estados de Pernambuco, Paraíba e Alagoas;
 
