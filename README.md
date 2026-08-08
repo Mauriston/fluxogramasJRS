@@ -1,11 +1,8 @@
-# **MARINHA DO BRASIL**
-**HOSPITAL NAVAL DE RECIFE**
-
-**ORDEM INTERNA Nº 02-05D**
+# **ORDEM INTERNA HNRe Nº 02-05D**
 
 Assunto:	Normas para o funcionamento da Junta Regular de Saúde  
 			  
-Referências:		
+Referências:<br>		
 A) Regimento interno deste Hospital Naval;  
 B) DGPM-406 (9ª Revisão);   
 C) DGPM-401 (4ª Revisão);   
@@ -13,7 +10,7 @@ D) Resolução CFM N° 2.430, de 21 de maio de 2025;
 E) SGM–303 (7ª Revisão); e  
 F) SGM-107 (10ª Revisão).
 
-Anexos:		
+Anexos:<br>		
 A) Fluxograma de Inspeções de Saúde da JRS;  
 B) Fluxograma de Inspeções de Saúde do MPI;  
 C) Fluxograma de Inspeções de Saúde do MPIQ;   
