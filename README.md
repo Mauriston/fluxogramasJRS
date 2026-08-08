@@ -51,7 +51,7 @@ A JRS/HNRe é organizada administrativamente pelos Agentes Médicos Periciais (A
 
 3) Auxiliares: no mínimo 2 Cabos preferencialmente da especialidade EF.
 
-   A fim de prontificar avaliações e exames necessários para as conclusões das IS, são considerados **Serviços de Apoio à JRS:**
+A fim de prontificar avaliações e exames necessários para as conclusões das IS, são considerados **Serviços de Apoio à JRS:**
 
 1) O Serviço de Ambulatório (HNRe-10.5);
 
