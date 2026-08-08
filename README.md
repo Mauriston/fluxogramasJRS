@@ -1,12 +1,6 @@
-# 
-
 # **MARINHA DO BRASIL**
 
-# 
-
 # **HOSPITAL NAVAL DE RECIFE**
-
-# 
 
 02.2/080.1  
 Recife, PE, na data da assinatura.
