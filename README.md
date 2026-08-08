@@ -24,15 +24,15 @@ C) Fluxograma de Inspeções de Saúde do MPIQ;
 D) Fluxograma da tramitação dos Atestados de Origem;  
 E) Fluxograma de cancelamento de IS por não comparecimento. 	 			
 
-# **1\. PROPÓSITO**
+## **1\. PROPÓSITO**
 
 Estabelecer normas para o funcionamento da Junta Regular de Saúde deste Hospital Naval.
 
-# **2\. CONCEITUAÇÃO E FINALIDADE**
+## **2\. CONCEITUAÇÃO E FINALIDADE**
 
 O Subsistema Médico-Pericial (SMP), integrante do Sistema de Saúde da Marinha (SSM), é o responsável pelas avaliações médico-periciais do pessoal em serviço ativo, veterano e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da MB. Este documento apresenta, como finalidade, estabelecer normas para o funcionamento do SMP no âmbito do Hospital Naval de Recife através da Junta Regular de Saúde (JRS/HNRe) e definir a estrutura administrativa desta. 
 
-# **3\. ESTRUTURA ORGANIZACIONAL**  
+## **3\. ESTRUTURA ORGANIZACIONAL**  
 
 A Junta Regular de Saúde (HNRe-02.2) é subordinada administrativamente ao Vice-Diretor (HNRe-02) conforme a referência A e tecnicamente à Junta Superior Distrital do Comando do 3ºDN (JSD/COM3ºDN) enquanto elemento do SMP de acordo com o previsto na referência B.
 
@@ -76,7 +76,7 @@ A JRS/HNRe é organizada administrativamente pelos Agentes Médicos Periciais (A
 
    2) Os AMP podem solicitar exames subsidiários e pareceres especializados às clínicas da MB ou extra-MB, quando julgarem pertinentes, para esclarecimento diagnóstico.
 
-# **4\. OBJETIVOS**
+## **4\. OBJETIVOS**
 
    4.1 Verificar o estado de sanidade psicofísica do pessoal em serviço ativo, inativos, veteranos e a ser selecionado para ingresso na MB, bem como aquelas relacionadas aos Servidores Civis da Marinha do Brasil e, excepcionalmente, a avaliação da capacidade laboral no Serviço de Praticagem nos estados de Pernambuco, Paraíba e Alagoas;
 
